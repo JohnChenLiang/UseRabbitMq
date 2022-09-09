@@ -24,4 +24,19 @@ public class RabbitMqConfig {
         return BindingBuilder.bind(useFanoutQueue).to(useFanoutExchange);
     }
 
+
+    @Bean
+    public Queue useDirectQueue(){
+        return new Queue("use.direct.queue");
+    }
+
+    // 配置Routing（路由模式）的direct交换机。
+    @Bean
+    DirectExchange useDirectExchange() { return new DirectExchange("use.direct.exchange");}
+
+    //direct交换机绑定队列 还有 routingKey
+    @Bean
+    Binding useDirectBinding() {
+        return BindingBuilder.bind(useDirectQueue()).to(useDirectExchange()).with("use.direct.routing.key");
+    }
 }
