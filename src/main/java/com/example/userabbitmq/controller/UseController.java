@@ -37,7 +37,7 @@ public class UseController {
 
         Log log = new Log();
         log.setParams("56666");
-        //第一个参数是 交换器名称。第二个参数是 路由key，fanout交换机 不用配路由key，这里放空串。第三个参数是要传递的对象。
+        //第一个参数是 交换器名称。第二个参数是 路由key。第三个参数是要传递的对象。
         //Routing（路由模式）：有选择的接收消息。用过这个。用direct交换机，有routingKey。消息发到交换机，再根据 路由key 发到对应队列。
         rabbitTemplate.convertAndSend("use.direct.exchange", "use.direct.routing.key", log);
         System.out.println("消息发送成功 发的是对象");
